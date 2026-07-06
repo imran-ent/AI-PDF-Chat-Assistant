@@ -1,19 +1,9 @@
-import google.generativeai as genai
-import os
-from dotenv import load_dotenv
+from sentence_transformers import SentenceTransformer
 
-load_dotenv()
-
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
-MODEL_NAME = "models/embedding-001"
+# Load model once
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
-def create_embedding(text: str, task_type="retrieval_document"):
-    response = genai.embed_content(
-        model=MODEL_NAME,
-        content=text,
-        task_type=task_type,
-    )
-
-    return response["embedding"]
+def create_embedding(text: str):
+    embedding = model.encode(text)
+    return embedding.tolist()
