@@ -23,7 +23,10 @@ def store_chunk(
     Store one chunk inside ChromaDB.
     """
 
-    embedding = create_embedding(chunk)
+    embedding = create_embedding(
+    chunk,
+    "retrieval_document"
+)
 
     collection.add(
         ids=[chunk_id],
@@ -46,7 +49,10 @@ def search_chunks(
     Retrieve the most relevant chunks.
     """
 
-    question_embedding = create_embedding(question)
+    query_embedding = create_embedding(
+    question,
+    "retrieval_query"
+)
 
     results = collection.query(
         query_embeddings=[question_embedding],
