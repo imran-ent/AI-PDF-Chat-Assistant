@@ -1,21 +1,17 @@
 from sentence_transformers import SentenceTransformer
 
+model = None
 
-# Load the embedding model only once when the application starts
-model = SentenceTransformer("all-MiniLM-L6-v2")
+
+def get_model():
+    global model
+
+    if model is None:
+        model = SentenceTransformer("all-MiniLM-L6-v2")
+
+    return model
 
 
 def create_embedding(text: str) -> list:
-    """
-    Convert text into a vector embedding.
-
-    Args:
-        text: Input text.
-
-    Returns:
-        Embedding vector as a Python list.
-    """
-
-    embedding = model.encode(text)
-
+    embedding = get_model().encode(text)
     return embedding.tolist()
