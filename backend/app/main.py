@@ -15,7 +15,7 @@ app = FastAPI(
 # Allow React Frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["https://ai-pdf-chat-assistant-pt577vyfs-imran-ents-projects.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
