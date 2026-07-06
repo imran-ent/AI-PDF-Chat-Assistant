@@ -1,43 +1,126 @@
-.chat{
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+}
+
+.app{
+    min-height:100vh;
+}
+
+.navbar{
+    height:70px;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:26px;
+    font-weight:bold;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.container{
     width:90%;
     max-width:900px;
-    margin:30px auto;
+    margin:40px auto;
+}
+
+.upload-card,
+.chat{
     background:white;
-    padding:20px;
-    border-radius:10px;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    margin-bottom:25px;
 }
 
-.chat input{
+.upload-card{
+    text-align:center;
+}
+
+.upload-card h2{
+    margin-bottom:10px;
+}
+
+.upload-card p{
+    color:#666;
+    margin-bottom:20px;
+}
+
+.filename{
+    color:#2563eb;
+    margin:15px 0;
+    font-weight:bold;
+}
+
+button{
     width:100%;
-    padding:10px;
-    margin-top:15px;
-    font-size:16px;
-}
-
-.chat button{
-    margin-top:15px;
-    padding:10px 20px;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
     cursor:pointer;
+    font-size:16px;
+    transition:.3s;
 }
 
-.message{
+button:hover{
+    background:#1d4ed8;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.chat h2{
+    margin-bottom:20px;
+}
+
+.messages{
+    height:420px;
+    overflow-y:auto;
     margin-bottom:20px;
 }
 
 .user-message{
-    background:#e3f2fd;
-    padding:10px;
-    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    width:80%;
+    margin-left:auto;
+    margin-bottom:15px;
 }
 
 .ai-message{
-    background:#f5f5f5;
-    padding:10px;
+    background:#eef2ff;
+    color:#111827;
+    padding:14px;
+    border-radius:12px;
+    width:80%;
+    margin-bottom:20px;
+}
+
+.chat input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
     border-radius:8px;
-    margin-top:10px;
+    margin-bottom:15px;
+    font-size:15px;
 }
 
 .loader{
-    margin-top:15px;
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:15px;
     font-weight:bold;
 }

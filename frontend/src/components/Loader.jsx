@@ -4,7 +4,7 @@ function Loader() {
 
         <div className="loader">
 
-            <p>Thinking...</p>
+            🤖 AI is thinking...
 
         </div>
 

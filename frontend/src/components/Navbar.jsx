@@ -1,15 +1,9 @@
 function Navbar() {
-
     return (
-
-        <nav className="navbar">
-
-            <h2>AI PDF Chat Assistant</h2>
-
-        </nav>
-
+        <div className="navbar">
+            🤖 AI PDF Chat Assistant
+        </div>
     );
-
 }
 
 export default Navbar;

@@ -1,13 +1,27 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useRef, useEffect } from "react";
+import { FaPaperPlane } from "react-icons/fa";
 
+import api from "../services/api";
 import Message from "./Message";
 import Loader from "./Loader";
 
 function ChatBox() {
+
     const [question, setQuestion] = useState("");
+
     const [messages, setMessages] = useState([]);
+
     const [loading, setLoading] = useState(false);
+
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+
+        messagesEndRef.current?.scrollIntoView({
+            behavior: "smooth",
+        });
+
+    }, [messages]);
 
     const askQuestion = async () => {
 
@@ -17,74 +31,91 @@ function ChatBox() {
 
         try {
 
-            const response = await axios.post(
-                "http://localhost:8000/ask",
-                {
-                    question: question
-                }
-            );
+            const response = await api.post("/ask", {
+                question,
+            });
 
-            setMessages([
-                ...messages,
+            setMessages((prev) => [
+                ...prev,
                 {
-                    question: question,
-                    answer: response.data.answer
-                }
+                    question,
+                    answer: response.data.answer,
+                },
             ]);
 
             setQuestion("");
 
         } catch (error) {
 
-            alert("Failed to get response from server.");
-
             console.error(error);
+
+            alert("Unable to get AI response.");
 
         }
 
         setLoading(false);
+
+    };
+
+    const handleKeyDown = (e) => {
+
+        if (e.key === "Enter") {
+
+            askQuestion();
+
+        }
+
     };
 
     return (
 
         <div className="chat">
 
-            <h2>Ask Questions</h2>
+            <h2>Chat with your PDF</h2>
 
             <div className="messages">
 
-                {
-                    messages.map((message, index) => (
+                {messages.map((message, index) => (
 
-                        <Message
-                            key={index}
-                            question={message.question}
-                            answer={message.answer}
-                        />
+                    <Message
+                        key={index}
+                        question={message.question}
+                        answer={message.answer}
+                    />
 
-                    ))
-                }
+                ))}
+
+                {loading && <Loader />}
+
+                <div ref={messagesEndRef}></div>
 
             </div>
 
-            {
-                loading && <Loader />
-            }
-
             <input
                 type="text"
-                placeholder="Ask a question..."
+                placeholder="Ask anything from your PDF..."
                 value={question}
+                disabled={loading}
+                onKeyDown={handleKeyDown}
                 onChange={(e) => setQuestion(e.target.value)}
             />
 
-            <button onClick={askQuestion}>
-                Send
+            <button
+                onClick={askQuestion}
+                disabled={loading}
+            >
+                <FaPaperPlane />
+
+                <span style={{marginLeft:"8px"}}>
+                    Send
+                </span>
+
             </button>
 
         </div>
 
     );
+
 }
 
 export default ChatBox;

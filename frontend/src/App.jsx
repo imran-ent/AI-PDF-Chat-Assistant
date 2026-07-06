@@ -9,23 +9,20 @@ function App() {
     const [uploaded, setUploaded] = useState(false);
 
     return (
-        <div>
+        <div className="app">
 
             <Navbar />
 
-            <UploadPDF
-                setUploaded={setUploaded}
-            />
+            <div className="container">
 
-            {
-                uploaded && (
-                    <ChatBox />
-                )
-            }
+                <UploadPDF setUploaded={setUploaded} />
+
+                {uploaded && <ChatBox />}
+
+            </div>
 
         </div>
     );
-
 }
 
 export default App;

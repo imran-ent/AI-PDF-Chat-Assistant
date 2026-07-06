@@ -1,45 +1,50 @@
 import { useState } from "react";
-import axios from "axios";
+import { FaFilePdf } from "react-icons/fa";
+import api from "../services/api";
 
 function UploadPDF({ setUploaded }) {
 
     const [file, setFile] = useState(null);
+
     const [loading, setLoading] = useState(false);
 
-    const handleUpload = async () => {
+    const uploadPDF = async () => {
 
         if (!file) {
-            alert("Please select a PDF file.");
+
+            alert("Choose a PDF");
+
             return;
+
         }
 
         const formData = new FormData();
 
         formData.append("file", file);
 
-        setLoading(true);
-
         try {
 
-            const response = await axios.post(
-                "http://localhost:8000/upload",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+            setLoading(true);
 
-            alert(response.data.status);
+            await api.post("/upload", formData, {
+
+                headers: {
+
+                    "Content-Type": "multipart/form-data"
+
+                }
+
+            });
 
             setUploaded(true);
 
-        } catch (error) {
+        }
 
-            console.error(error);
+        catch (err) {
 
-            alert("Failed to upload PDF.");
+            console.log(err);
+
+            alert("Upload Failed");
 
         }
 
@@ -49,23 +54,56 @@ function UploadPDF({ setUploaded }) {
 
     return (
 
-        <div className="upload">
+        <div className="upload-card">
+
+            <FaFilePdf className="pdf-icon"/>
 
             <h2>Upload PDF</h2>
 
+            <p>
+
+                Upload your document and ask AI anything.
+
+            </p>
+
             <input
+
                 type="file"
+
                 accept=".pdf"
-                onChange={(e) => setFile(e.target.files[0])}
+
+                onChange={(e)=>setFile(e.target.files[0])}
+
             />
 
-            <br />
+            {
 
-            <button
-                onClick={handleUpload}
-                disabled={loading}
-            >
-                {loading ? "Uploading..." : "Upload PDF"}
+                file &&
+
+                <p className="filename">
+
+                    📄{file.name}
+
+                </p>
+
+            }
+
+            <button onClick={uploadPDF}>
+
+                {
+
+                    loading
+
+                    ?
+
+                    "Uploading..."
+
+                    :
+
+                    "Upload PDF"
+
+                }
+
             </button>
 
         </div>
