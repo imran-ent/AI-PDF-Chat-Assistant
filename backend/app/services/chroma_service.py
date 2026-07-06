@@ -24,9 +24,9 @@ def store_chunk(
     """
 
     embedding = create_embedding(
-    chunk,
-    "retrieval_document"
-)
+        chunk,
+        "retrieval_document"
+    )
 
     collection.add(
         ids=[chunk_id],
@@ -50,12 +50,12 @@ def search_chunks(
     """
 
     query_embedding = create_embedding(
-    question,
-    "retrieval_query"
-)
+        question,
+        "retrieval_query"
+    )
 
     results = collection.query(
-        query_embeddings=[question_embedding],
+        query_embeddings=[query_embedding],
         n_results=top_k
     )
 
