@@ -16,7 +16,7 @@ An intelligent, full-stack conversational AI application that allows users to up
 
 ## 🛠️ Tech Stack
 
-*   **Frontend:** [Streamlit](https://streamlit.io) (for a clean, responsive UI)
+*   **Frontend:** [Streamlit ](https://streamlit.io) (for  a clean, responsive UI)
 *   **LLM Orchestration:** [LangChain](https://langchain.com) / LangGraph
 *   **AI Model:** OpenAI (GPT-4o) / Anthropic Claude / Google Gemini
 *   **Vector Database:** ChromaDB / FAISS / Qdrant
@@ -112,6 +112,7 @@ Contributions make the open-source community an amazing place to learn, inspire,
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+6. That's it
 
 ---
 
