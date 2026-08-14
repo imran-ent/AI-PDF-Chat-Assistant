@@ -1,6 +1,6 @@
 # 🤖 AI PDF Chat Assistant
 
-An intelligent, full-stack conversational AI application that allows users to upload PDF documents and have context-aware, natural language conversations about their content. Powered by Retrieval-Augmented Generation (RAG), this assistant extracts, indexes, and queries document information instantly without requiring manual reading.
+An intelligent, full-stack conversational AI application that allows users to upload PDF documents and have context-aware, njatural language conversations about their content. Powered by Retrieval-Augmented Generation (RAG), this assistant extracts, indexes, and queries document information instantly without requiring manual reading.
 
 ---
 
