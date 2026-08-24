@@ -6,7 +6,6 @@ import google.generativeai as genai
 logger = logging.getLogger(__name__)
 
 # Initialize the Gemini API client globally
-# It will pull your existing GEMINI_API_KEY from Render's environment variables
 api_key = os.getenv("GEMINI_API_KEY")
 if api_key:
     genai.configure(api_key=api_key)
@@ -22,10 +21,9 @@ def create_embedding(text: str) -> List[float]:
         raise ValueError("Cannot embed empty text")
         
     try:
-        # Use Google's standard lightweight text-embedding model
-        # text-embedding-004 creates clean 768-dimensional vector strings
+        # Changed to the highly stable, globally supported embedding model
         response = genai.embed_content(
-            model="models/text-embedding-004",
+            model="models/embedding-001",
             content=text,
             task_type="retrieval_document"
         )
