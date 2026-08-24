@@ -26,7 +26,7 @@ def create_embedding(text: str) -> List[float]:
         # text-embedding-004 creates clean 768-dimensional vector strings
         response = genai.embed_content(
             model="models/text-embedding-004",
-            contents=text,
+            content=text,
             task_type="retrieval_document"
         )
         
